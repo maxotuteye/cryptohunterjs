@@ -12,6 +12,7 @@ import {
     ThunderboltOutlined,
     TrophyOutlined
 } from "@ant-design/icons";
+import Loader from "./Loader";
 
 const {Title, Text} = Typography
 const {Option} = Select
@@ -22,13 +23,13 @@ const CryptoDetails = () => {
     const {data, isFetching} = useGetCryptoDetailsQuery(coinId)
     const {data: coinHistory} = useGetCryptoHistoryQuery({coinId, timePeriod})
 
-    if (isFetching) return 'Loading...'
+    if (isFetching) return <Loader/>
 
     const cryptoDetails = data?.data?.coin
 
     // console.log(cryptoDetails)
 
-    const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
+    const time = ['24h', '7d', '30d', '1y', '5y'];  //3m, 3h and 3y not working
 
     const stats = [
         {
